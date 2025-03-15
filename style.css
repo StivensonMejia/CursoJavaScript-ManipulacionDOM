@@ -1,0 +1,362 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+
+:root {
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    --white-pure: #fff;
+    --white-light: #E8E8E8;
+    --black-pure: #000;
+    --black-light: #303030;
+    --primary: #58a083;
+    --primary-light: #44af72;
+    --red: #B35353;
+    --red-light : #DA4545;
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    gap: 20px;
+    padding: 0 15%;
+    background-color: var(--white-pure);
+}
+
+#themeContainer {
+    margin-top: 5%;
+    width: 800px;
+    height: 60px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-radius: 5px;
+    h1 {
+        text-align: center;
+        padding: 0 20px;
+        color: var(--white-pure);
+        font-size: 2rem;
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        .btnChangeTheme {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            &:checked + .slider {
+                background-color: var(--black-light);
+            }
+            &:checked + .slider::before {
+                transform: translateX(25px);
+            }
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--white-pure);
+            transition: 0.4s;
+            border-radius: 5px;
+            &::before {
+                content: "";
+                position: absolute;
+                height: 24px;
+                width: 24px;
+                left: 4px;
+                bottom: 3.5px;
+                background-color: var(--primary);
+                transition: 0.4s;
+                border-radius: 5px;
+            }
+            
+        }
+    }
+}
+
+#taskManager-sec {
+    width: 800px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 4px solid var(--primary);
+    background-color: var(--white-pure);
+    margin-bottom: 5%;
+    form {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        .textArea {
+            width: 100%;
+            min-height: 40px;
+            max-height: 120px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background-color: var(--white-pure);
+            color: var(--black-pure);
+            resize: vertical;
+            field-sizing: content;
+            &:focus {
+                border: 1px solid var(--primary-light); 
+                outline: none;
+            }
+        }
+        button {
+            width: 165px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: var(--primary);
+            border: none;
+            color: var(--white-pure);
+            font-size: 1.2rem;
+            cursor: pointer;
+            &:hover {
+                background-color: var(--primary-light);
+            }
+        }
+    }
+    .taskContainer {
+        width: 100%;
+        min-height: 50vh;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        transition: all 0.3s ease-out;
+        .task {
+            width: 100%;
+            min-height: 60px;
+            background-color: var(--white-light);
+            list-style: none;
+            border-radius: 5px;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            padding: 10px 20px;
+
+            p {
+                width: 100%;
+                align-self: center;
+                font-size: 1.2rem;
+                text-wrap: balance;
+                background-color: var(--white-pure);
+                color: var(--black-pure);
+                padding: 10px;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+            .inTask {
+                display: flex;
+                button {
+                    width: 40px;
+                    height: 40px;
+                    margin-left: 5px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                button:nth-child(2) {
+                    background-color: var(--red);
+                    color: white;
+                    border: none;
+                    &:hover {
+                        background-color: var(--red-light);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modalContainer {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1e1e1e98;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    justify-content: center;
+    align-items: center;
+    .modalEdit {
+        position: relative;
+        width: 600px;
+        height: 600px;
+        background-color: var(--white-pure);
+        border-radius: 5px;
+        padding: 20px;
+        #formularioEdit {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            .textAreaEdit {
+                width: 100%;
+                height: 90%;
+                border-radius: 5px;
+                resize: none;
+                font-size: 1.2rem;
+                padding: 10px;
+                background-color: var(--white-pure);
+                color: var(--black-pure);
+                &:focus {
+                    border: 1px solid var(--primary-light);
+                    outline: none;
+                }
+            }
+            .btnEditINModal {
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+                background-color: var(--primary);
+                border: none;
+                font-size: 1.2rem;
+                color: var(--white-pure);
+                cursor: pointer;
+                &:hover {
+                    background-color: var(--primary-light);
+                }
+            }
+        }
+    }
+    .modalDelete {
+        width: 400px;
+        height: 300px;
+        background-color: var(--white-pure);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        position: relative;
+        p {
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--black-pure);
+        }
+        div {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            button {
+                width: 50%;
+                height: 40px;
+                border-radius: 5px;
+                border: none;
+                color: var(--white-pure);
+                font-size: 1.2rem;
+                cursor: pointer;
+            }
+            .btnDeleteINModal {
+                background-color: var(--red);
+                &:hover {
+                    background-color: var(--red-light);
+                }
+            }
+            .btnCancelINModal {
+                background-color: var(--primary);
+                &:hover {
+                    background-color: var(--primary-light);
+                }
+            }
+        }
+        
+    }
+    .closeButton{
+        position: absolute;
+        width: 55px;
+        height: 55px;
+        top: -15px;
+        right: -15px;
+        border: 10px solid var(--white-pure);
+        border-radius: 5px;
+        background-color: var(--red);
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--red-light);
+        }
+    }
+}
+
+.visible {
+    display: flex;  /* Se muestra cuando tiene la clase "visible" */
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.dark-theme {
+    --white-pure: #2f2f2f;
+    --white-light: #3f3f3f;
+    --black-pure: #e8e8e8;
+}
+
+@media (max-width: 890px) {
+    main {
+        padding: 5% 5%;
+    }
+    #themeContainer {
+        width: 100%;
+    }
+    #taskManager-sec {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    #taskManager-sec {
+        form {
+            flex-direction: column;
+            button {
+                width: 100%;
+            }
+        }
+        .taskContainer {
+            width: 100%;
+            min-height: 50vh;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: all 0.3s ease-out;
+            .task {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

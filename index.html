@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script>
+        (function() {
+          if (localStorage.getItem("darkMode") === "enabled") {
+            document.documentElement.classList.add("dark-theme");
+          }
+        })();
+      </script>
+</head>
+<body>
+    <main>
+        <section id="themeContainer">
+            <h1> LISTA DE TUS NOTAS </h1>
+            <label class="switch">
+                <input type="checkbox" class="btnChangeTheme">
+                <span class="slider"></span>
+            </label>
+        </section>
+        <section id="taskManager-sec">
+            <form action="" id="formulario">
+                <textarea class="textArea" placeholder="Escribe aqui"> </textarea>
+                <button type="submit">Agregar</button>
+            </form>
+            <div class="taskContainer">
+            </div>
+        </section>
+        <section class="modalContainer modEdit">
+            <article class="modalEdit">
+                <button id="btnCloseMEdit" class="closeButton">X</button>
+                <form action="" id="formularioEdit">
+                    <textarea class="textAreaEdit" placeholder="Escribe aqui"> </textarea>
+                    <button class="btnEditINModal" type="submit">Guardar</button>
+                </form>
+            </article>
+        </section>
+        <section class="modalContainer modDelete">
+            <article class="modalDelete">
+                <button id="btnCloseMDelete" class="closeButton">X</button>
+                <p>¿Estas seguro de eliminar esta nota?</p>
+                <div>
+                    <button class="btnCancelINModal">Cancelar</button>
+                    <button class="btnDeleteINModal">Eliminar</button>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>
